@@ -49,7 +49,7 @@ namespace Tests
         }
 
         [Fact]
-        public void ThreePlayerspassed_2520Returned()
+        public void ThreePlayerspassed_1130Returned()
         {
             double expected = 1130;
             var players = GetPlayers(20, 4, new List<int> { 2, 1, 4 });
