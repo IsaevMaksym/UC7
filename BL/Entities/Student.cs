@@ -1,8 +1,9 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace BL.Entities
 {
-    public class Student : IEquatable<Student>
+    public class Student : IEquatable<Student>, IEqualityComparer<Student>
     {
         public string? Name { get; set; }
         public int Age { get; set; }
@@ -27,7 +28,38 @@ namespace BL.Entities
                 this.Exceptional == other.Exceptional &&
                 this.HonorRoll == other.HonorRoll &&
                 this.Passed == other.Passed;
-        }     
+        }
+
+        public bool Equals(Student? x, Student? y)
+        {
+            if (ReferenceEquals(x, y))
+            {
+                return true;
+            }
+
+            if (x is null || y is null)
+            {
+                return false;
+            }
+
+            return x.Name == y.Name && x.Age == y.Age &&
+                x.Grade == y.Grade &&
+                x.Exceptional == y.Exceptional &&
+                x.HonorRoll == y.HonorRoll &&
+                x.Passed == y.Passed;
+        }
+
+        public int GetHashCode([DisallowNull] Student obj)
+        {
+            int hash = 1;
+
+            hash = hash + obj.Age.GetHashCode();
+            hash = hash + obj.Grade.GetHashCode();
+            hash = hash + obj.Passed.GetHashCode();
+            hash = hash + obj.HonorRoll.GetHashCode();
+
+            return hash;
+        }
     }
 
 }

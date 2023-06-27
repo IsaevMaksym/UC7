@@ -16,7 +16,7 @@ namespace BL
                 if (player.Age < 18)
                 {
                     contribution *= 0.5;
-                }
+                }   
 
                 if (player.Experience > 10)
                 {
@@ -29,5 +29,4 @@ namespace BL
             return score;
         }
     }
-
 }
